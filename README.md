@@ -16,7 +16,6 @@ From your command line:
 $ git clone https://github.com/EslamHosney/extract_firewall_config.git
 
 # Go into the repository
-$ cd gatepy
 
 # Install dependencies
 $ pip install -r requirements.txt
