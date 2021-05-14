@@ -1,21 +1,15 @@
-#import texttable
-#import netmiko
 from netmiko import ConnectHandler
-##from texttable import Texttable
-##import paramiko
-#import os
-#import getpass
-#import sys
-#import telnetlib
+
 
 def ReadFile(inFile):
+	#function to read .txt files into python list
     with open(inFile, "r") as f:
         content = f.readlines()   
     content = [x.strip() for x in content]
     return (content)
 
 def Parse_FW_configuration(FW):
-    
+    # read FW configuration/routes and add them to .txt files
     FW_name     = FW[0]
     FW_IP       = FW[1]
     FW_Platform = FW[2]
@@ -53,7 +47,7 @@ def Parse_FW_configuration(FW):
 
     if(FW_Platform == 'Juniper ScreenOS'):
             device = ConnectHandler(device_type='juniper', ip= FW_IP , username=FW_Username, password=FW_Password)
-            configLines = device.send_command_timing('get config',2,1500)
+            configLines = device.send_command_timing('get config',2,1500)#to decide where to start(2,1500 ) used for delay and waiting time
             configLines = str(configLines)
             routeLines = device.send_command_timing('get route',2,1500)
             routeLines = str(routeLines)
@@ -91,7 +85,6 @@ while len(unParsedFW) != 0:# for the code to retry till all the FW configuration
         try:
             print("try ",fw)
             Parse_FW_configuration(FWsDic[fw])
-            
             unParsedFW.remove(fw)
             print(fw,"Done")
             print "Remaining FWs List:"
