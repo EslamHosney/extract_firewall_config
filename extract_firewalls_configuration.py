@@ -29,9 +29,9 @@ def Parse_FW_configuration(FW):
             configLines = device.send_command_timing('show full-configuration',2,1500)
             routeLines = device.send_command_timing('get router info routing-table details',2,1500)
             configLines = str(configLines)
-            configFile = open(FW_name+".txt" , "w")#"c:\\Users\\User\\Desktop\\Policy\\CIH_file\\get FWs Conf\\Config Files\\"+
+            configFile = open(FW_name+".txt" , "w")
             configFile.write(configLines)
-            routeFile = open(FW_name+"_routes.txt" , "w")#"c:\\Users\\User\\Desktop\\Policy\\CIH_file\\get FWs Conf\\Route Files\\"+
+            routeFile = open(FW_name+"_routes.txt" , "w")
             routeFile.write(routeLines)
             configFile.close()
             routeFile.close()
@@ -43,9 +43,9 @@ def Parse_FW_configuration(FW):
             configLines = device.send_command_timing('show configuration | display set | no-more',2,1500)
             routeLines = device.send_command_timing('show route | no-more',2,1500)
             configLines = str(configLines)
-            configFile = open(FW_name+".txt" , "w")#"c:\\Users\\User\\Desktop\\Policy\\CIH_file\\get FWs Conf\\Config Files\\"+
+            configFile = open(FW_name+".txt" , "w")
             configFile.write(configLines)
-            routeFile = open(FW_name+"_routes.txt" , "w")#"c:\\Users\\User\\Desktop\\Policy\\CIH_file\\get FWs Conf\\Route Files\\"+
+            routeFile = open(FW_name+"_routes.txt" , "w")
             routeFile.write(routeLines)
             configFile.close()
             routeFile.close()
@@ -57,9 +57,9 @@ def Parse_FW_configuration(FW):
             configLines = str(configLines)
             routeLines = device.send_command_timing('get route',2,1500)
             routeLines = str(routeLines)
-            configFile = open(FW_name+".txt" , "w")#"c:\\Users\\User\\Desktop\\Policy\\CIH_file\\get FWs Conf\\Config Files\\"+
+            configFile = open(FW_name+".txt" , "w")
             configFile.write(configLines)
-            routeFile = open(FW_name+"_routes.txt" , "w")#"c:\\Users\\User\\Desktop\\Policy\\CIH_file\\get FWs Conf\\Route Files\\"+
+            routeFile = open(FW_name+"_routes.txt" , "w")
             routeFile.write(routeLines)
             configFile.close()
             routeFile.close()
@@ -90,7 +90,6 @@ while len(unParsedFW) != 0:# for the code to retry till all the FW configuration
     for fw in unParsedFW:
         try:
             print("try ",fw)
-#            Parse_FW_configuration(FWsDic[fw][0],fw,FWsDic[fw][1])
             Parse_FW_configuration(FWsDic[fw])
             
             unParsedFW.remove(fw)
